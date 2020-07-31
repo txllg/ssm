@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+<!--    以上为导入的相关约束-->
+
+<!--    扫描controller包-->
+    <context:component-scan base-package="cn.txl.controller"/>
+
+<!--    配置视图解析器-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!--        prefix表示前缀，路径名-->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+<!--        suffix表示后缀，文件的后缀名-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+<!--    配置使得静态资源不被过滤-->
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+
+
+<!--    开启springMVC对注解的支持-->
+    <mvc:annotation-driven/>
+</beans>
